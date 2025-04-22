@@ -1,10 +1,27 @@
-// import { useState } from 'react'
+// import { useState, useEffect } from 'react'
+// import sql from 'sql'
 import './App.css'
-import ContactForm from './components/ContactForm/ContactForm.jsx'
-import SearchBox from './components/SearchBox/SearchBox.jsx'
-import ContactList from './components/ContactList/ContactList.jsx'
+import ContactList from './components/ContactList/ContactList';
+import ContactForm from './components/ContactForm/ContactForm';
+import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
+
+  // function convertResultToObject(resArray) {
+  //   const columns = resArray[0].columns;
+  //   const values = resArray[0].values;
+  //   return values.map(row => {
+  //     return columns.reduce((obj, column, i) => {
+  //       obj[column] = row[i];
+  //       return obj;
+  //     }, (obj = {}));
+  //   });
+  // }
+
+  // useEffect(() => {
+  // });
+
+
   // const [count, setCount] = useState(0)
 
   const phoneBook = [
@@ -18,9 +35,14 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList contacts={phoneBook} />
+      <p>Виконати домашку за умовою у конспекті і не ускладнювати собі життя? Не чув такого.... Так не цікаво...</p>
+      <p>Зробити щось, щоб помучитися, навчитися чогось, і щоб ментору запам'ятатися нінзя-кодом - оце воно! Ось він, смак життя! </p>
+
+      <div className="componentsWrap">
+        <ContactForm />
+        <SearchBox />
+        <ContactList contacts={phoneBook} />
+      </div>
     </div>
   )
 }

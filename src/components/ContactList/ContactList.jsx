@@ -1,14 +1,16 @@
-import styles from './ContactList.module.css';
+import css from './ContactList.module.css';
 import Contact from '../Contact/Contact.jsx';
 
 export default function ContactList({ contacts }) {
   return (
-    <div className={styles.container}>
-      <ul>
+    <div className={css.container}>
+      <ul className={css.contactList}>
         {contacts.map(contact => {
-          <li>
-            <Contact people={contact} />
-          </li>
+          return (
+            <li key={contact.id} className={css.listItem}>
+              <Contact people={contact} />
+            </li>
+          )
         })}
       </ul>
     </div>
