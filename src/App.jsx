@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 // import sql from 'sql'
 import './App.css'
 import ContactList from './components/ContactList/ContactList';
@@ -17,20 +17,27 @@ function App() {
   //     }, (obj = {}));
   //   });
   // }
-
-  // useEffect(() => {
-  // });
-
-
-  // const [count, setCount] = useState(0)
-
-  const phoneBook = [
+  const initPhoneBook = [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]
+  ];
 
+  const [phoneBook, setPhoneBook] = useState((JSON.parse(window.localStorage.getItem("superNinjaContacts")) ?? initPhoneBook));
+  const [searchPhrase, setSearchPhrase] = useState("")
+
+  const handleChange = (evt) => {
+    setSearchPhrase(evt.target.value);
+  };
+
+  useEffect(() => {
+    window.localStorage.setItem("superNinjaContacts", JSON.stringify(phoneBook));
+  }, [phoneBook]);
+
+  const filteredContacts = phoneBook.filter(abonent =>
+    abonent.name.toLowerCase().includes(searchPhrase.toLowerCase())
+  )
 
   return (
     <div>
@@ -40,8 +47,8 @@ function App() {
 
       <div className="componentsWrap">
         <ContactForm />
-        <SearchBox />
-        <ContactList contacts={phoneBook} />
+        <SearchBox value={searchPhrase} onChange={handleChange} />
+        <ContactList contacts={filteredContacts} />
       </div>
     </div>
   )
