@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-// import sql from 'sql'
 import './App.css'
 import ContactList from './components/ContactList/ContactList';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -7,16 +6,6 @@ import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
 
-  // function convertResultToObject(resArray) {
-  //   const columns = resArray[0].columns;
-  //   const values = resArray[0].values;
-  //   return values.map(row => {
-  //     return columns.reduce((obj, column, i) => {
-  //       obj[column] = row[i];
-  //       return obj;
-  //     }, (obj = {}));
-  //   });
-  // }
   const initPhoneBook = [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
