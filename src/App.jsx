@@ -3,6 +3,7 @@ import './App.css'
 import ContactList from './components/ContactList/ContactList';
 import ContactForm from './components/ContactForm/ContactForm';
 import SearchBox from './components/SearchBox/SearchBox';
+import { nanoid } from 'nanoid'
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
   const handleSumit = (values, actions) => {
     setPhoneBook([
       ...phoneBook,
-      { id: `id-${phoneBook.length + 1}`, name: values.contactName, number: values.contactPhone }
+      { id: nanoid(), name: values.contactName, number: values.contactPhone }
     ]);
     actions.resetForm();
   }
