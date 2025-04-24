@@ -61,10 +61,14 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <div className="componentsWrap">
-        <ContactForm onSubmit={handleSumit} initValues={initAddContactValues} />
-        <SearchBox value={searchPhrase} onChange={handleChange} />
-        <ContactList contacts={filteredContacts} onDelete={clickDeleteButton} />
+      <div className="componentsAllWrap">
+        <div className="componentsWrap">
+          <ContactForm onSubmit={handleSumit} initValues={initAddContactValues} />
+          <SearchBox value={searchPhrase} onChange={handleChange} />
+        </div>
+        <div className="componentsWrap">
+          <ContactList contacts={filteredContacts} onDelete={clickDeleteButton} />
+        </div>
       </div>
     </div>
   )
