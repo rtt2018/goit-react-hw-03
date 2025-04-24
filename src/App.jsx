@@ -24,8 +24,13 @@ function App() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ];
 
+  const initAddContactValues = {
+    contactName: "",
+    contactPhone: ""
+  };
+
   const [phoneBook, setPhoneBook] = useState((JSON.parse(window.localStorage.getItem("superNinjaContacts")) ?? initPhoneBook));
-  const [searchPhrase, setSearchPhrase] = useState("")
+  const [searchPhrase, setSearchPhrase] = useState("");
 
   const handleChange = (evt) => {
     setSearchPhrase(evt.target.value);
@@ -37,18 +42,29 @@ function App() {
 
   const filteredContacts = phoneBook.filter(abonent =>
     abonent.name.toLowerCase().includes(searchPhrase.toLowerCase())
-  )
+  );
+
+  const handleSumit = (values, actions) => {
+    setPhoneBook([
+      ...phoneBook,
+      { id: `id-${phoneBook.length + 1}`, name: values.contactName, number: values.contactPhone }
+    ]);
+    actions.resetForm();
+  }
+
+  const clickDeleteButton = (id) => {
+    setPhoneBook((prevPhoneBook) => {
+      return prevPhoneBook.filter((contact) => contact.id !== id)
+    })
+  };
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <p>Виконати домашку за умовою у конспекті і не ускладнювати собі життя? Не чув такого.... Так не цікаво...</p>
-      <p>Зробити щось, щоб помучитися, навчитися чогось, і щоб ментору запам'ятатися нінзя-кодом - оце воно! Ось він, смак життя! </p>
-
       <div className="componentsWrap">
-        <ContactForm />
+        <ContactForm onSubmit={handleSumit} initValues={initAddContactValues} />
         <SearchBox value={searchPhrase} onChange={handleChange} />
-        <ContactList contacts={filteredContacts} />
+        <ContactList contacts={filteredContacts} onDelete={clickDeleteButton} />
       </div>
     </div>
   )
