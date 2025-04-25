@@ -8,8 +8,8 @@ export default function ContactForm({ onSubmit, initValues }) {
   const nameFieldId = useId();
   const phoneFieldId = useId();
   const FeedbackSchema = Yup.object().shape({
-    contactName: Yup.string().min(3, "Too Short!").max(50, "Too Long!").matches(/^([A-ZА-ЯІЇЄҐ][a-zа-яіїєґ']+)\s([A-ZА-ЯІЇЄҐ][a-zа-яіїєґ']+)$/, 'Please enter First name and Last name, for example: "Taras Rogiv" or "Тарас Рогів"').required("Required"),
-    contactPhone: Yup.string().min(3, "Too Short!").max(50, "Too Long!").matches(/^\d{3}-\d{2}-\d{2}$/, 'Please, enter phone in format "123-45-67"').required("Required")
+    contactName: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
+    contactPhone: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required")
   });
   return (
     <div className={css.container}>
