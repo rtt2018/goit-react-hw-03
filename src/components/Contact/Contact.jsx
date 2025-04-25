@@ -3,6 +3,11 @@ import { FaUserLarge } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 
 export default function Contact({ people, onClickDelete }) {
+
+  const handleClick = () => {
+    onClickDelete(people.id);
+  }
+
   return (
     <>
       <div>
@@ -15,7 +20,7 @@ export default function Contact({ people, onClickDelete }) {
           <p className={css.contactDataDescript}>{people.number}</p>
         </div>
       </div>
-      <button onClick={() => { onClickDelete(people.id) }} className={css.contactDeleteButton} type='button'>Delete</button>
+      <button onClick={handleClick} className={css.contactDeleteButton} type='button'>Delete</button>
     </>
   );
 }
