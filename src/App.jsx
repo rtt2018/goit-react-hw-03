@@ -34,12 +34,11 @@ function App() {
     abonent.name.toLowerCase().includes(searchPhrase.toLowerCase())
   );
 
-  const handleSumit = (values, actions) => {
+  const handleSumit = (values) => {
     setPhoneBook([
       ...phoneBook,
       { id: nanoid(), name: values.contactName, number: values.contactPhone }
     ]);
-    actions.resetForm();
   }
 
   const clickDeleteButton = (id) => {

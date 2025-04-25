@@ -11,9 +11,15 @@ export default function ContactForm({ onSubmit, initValues }) {
     contactName: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
     contactPhone: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required")
   });
+
+  const handleSumit = (values, actions) => {
+    onSubmit(values);
+    actions.resetForm();
+  }
+
   return (
     <div className={css.container}>
-      <Formik initialValues={initValues} onSubmit={onSubmit} validationSchema={FeedbackSchema}>
+      <Formik initialValues={initValues} onSubmit={handleSumit} validationSchema={FeedbackSchema}>
         <Form className={css.formContainer} >
           <label className={css.labelContact} htmlFor="nameFieldId">Name</label>
           <Field className={css.contactInput} type="text" name="contactName" id={nameFieldId} />
